@@ -5,12 +5,13 @@ from fastapi import FastAPI, Response
 
 MAX_MB_SIZE = 10
 
-app = FastAPI()
+app = FastAPI(docs_url=None,redoc_url=None)
 
 @app.get('/')
 async def index():
     result = {'name':'test origin'}
     result['seconds_since_epoch'] = int(time.time())
+    result['max_size_mb'] = MAX_MB_SIZE
     return result
 
 @app.get('/test/{num_bytes}/bytes')
